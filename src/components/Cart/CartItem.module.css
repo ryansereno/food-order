@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid darkred;
   padding: 1rem 0;
   margin: 1rem 0;
 }
@@ -21,7 +21,7 @@
 
 .price {
   font-weight: bold;
-  color: red;
+  color: darkred;
 }
 
 .amount {
@@ -47,8 +47,8 @@
   font: inherit;
   font-weight: bold;
   font-size: 1.25rem;
-  color: red;
-  border: 1px solid red;
+  color: darkred;
+  border: 1px solid darkred;
   width: 3rem;
   text-align: center;
   border-radius: 6px;
@@ -60,6 +60,6 @@
 
 .cart-item button:hover,
 .cart-item button:active {
-  background-color: red;
+  background-color: darkred;
   color: white;
 }
