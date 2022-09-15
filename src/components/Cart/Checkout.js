@@ -11,12 +11,12 @@ const isNotFiveChars = (value) => {
 };
 
 const Checkout = (props) => {
-    const [formInputValidity, setFormInputValidity] = useState({
-        name: true,
-        street: true,
-        postal: true,
-        city: true  
-    })
+  const [formInputValidity, setFormInputValidity] = useState({
+    name: true,
+    street: true,
+    postal: true,
+    city: true,
+  });
 
   const nameInputRef = useRef();
   const streetInputRef = useRef();
@@ -35,12 +35,12 @@ const Checkout = (props) => {
     const enteredPostalIsValid = !isNotFiveChars(enteredPostal);
     const enteredStreetIsValid = !isEmpty(enteredStreet);
 
-      setFormInputValidity({
-          name:enteredNameIsValid,
-          street:enteredStreetIsValid,
-          postal:enteredPostalIsValid,
-          city:enteredCityIsValid
-      })
+    setFormInputValidity({
+      name: enteredNameIsValid,
+      street: enteredStreetIsValid,
+      postal: enteredPostalIsValid,
+      city: enteredCityIsValid,
+    });
 
     const formIsValid =
       enteredNameIsValid &&
@@ -48,37 +48,50 @@ const Checkout = (props) => {
       enteredPostalIsValid &&
       enteredStreetIsValid;
 
-      if(!formIsValid){
-
-          return
-      }
+    if (!formIsValid) {
+      return;
+    }
+    props.onCheckout({
+      name: enteredName,
+      street: enteredStreet,
+      postal: enteredPostal,
+      city: enteredCity,
+    });
   };
-    const nameControlClasses = `${classes.control} ${formInputValidity.name ? '' : classes.invalid}`
-    const streetInputClasses = `${classes.control} ${formInputValidity.street ? '' : classes.invalid}`
-    const postalInputClasses = `${classes.control} ${formInputValidity.postal ? '' : classes.invalid}`
-    const cityInputClasses = `${classes.control} ${formInputValidity.city ? '' : classes.invalid}`
+  const nameControlClasses = `${classes.control} ${
+    formInputValidity.name ? "" : classes.invalid
+  }`;
+  const streetInputClasses = `${classes.control} ${
+    formInputValidity.street ? "" : classes.invalid
+  }`;
+  const postalInputClasses = `${classes.control} ${
+    formInputValidity.postal ? "" : classes.invalid
+  }`;
+  const cityInputClasses = `${classes.control} ${
+    formInputValidity.city ? "" : classes.invalid
+  }`;
 
   return (
     <form className={classes.form} onSubmit={confirmHandler}>
       <div className={nameControlClasses}>
         <label htmlFor="name">Your Name</label>
         <input type="text" id="name" ref={nameInputRef} />
-          {!formInputValidity.name && <p>Name is required</p> }
+        {!formInputValidity.name && <p>Name is required</p>}
       </div>
       <div className={streetInputClasses}>
         <label htmlFor="street">Street</label>
         <input type="text" id="street" ref={streetInputRef} />
-          {!formInputValidity.street && <p>Street address is required</p> }
+        {!formInputValidity.street && <p>Street address is required</p>}
       </div>
       <div className={postalInputClasses}>
         <label htmlFor="postal">Postal Code</label>
         <input type="text" id="postal" ref={postalInputRef} />
-          {!formInputValidity.postal && <p>Postal code is required</p> }
+        {!formInputValidity.postal && <p>Postal code is required</p>}
       </div>
       <div className={cityInputClasses}>
         <label htmlFor="city">City</label>
         <input type="text" id="city" ref={cityInputRef} />
-          {!formInputValidity.city && <p>City is required</p> }
+        {!formInputValidity.city && <p>City is required</p>}
       </div>
       <div className={classes.actions}>
         <button type="button" onClick={props.onCancel}>
